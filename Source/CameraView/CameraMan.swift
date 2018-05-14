@@ -191,7 +191,7 @@ class CameraMan {
 
 
   // Attach EXIF DIctionary data to an image
-  func attachEXIFtoImage(image: Data, EXIF: [String: Any]) -> Data? {
+  private func attachEXIFtoImage(image: Data, EXIF: [String: Any]) -> Data? {
 
     if let imageDataProvider = CGDataProvider(data: image as CFData),
       let imageRef = CGImage(jpegDataProviderSource: imageDataProvider, decode: nil, shouldInterpolate: true, intent: .defaultIntent),
@@ -206,7 +206,7 @@ class CameraMan {
   }
 
 
-  func savePhoto(_ imageData: Data, location: CLLocation?, completion: (() -> Void)? = nil) {
+  private func savePhoto(_ imageData: Data, location: CLLocation?, completion: (() -> Void)? = nil) {
     PHPhotoLibrary.shared().performChanges({
 
       if let imageSource = CGImageSourceCreateWithData(imageData as CFData, nil),
